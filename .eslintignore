@@ -1,0 +1,7 @@
+coverage
+src/playground.ts
+*.js
+
+dist/
+**/node_modules/*
+.git/

@@ -1,0 +1,29 @@
+{
+  "exclude": ["node_modules"],
+  "include": ["src", "test"],
+  "compilerOptions": {
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "strict": true,
+    "preserveWatchOutput": false,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "types": ["node", "jest"],
+    "moduleResolution": "Node",
+
+    "lib": ["esnext"],
+    "target": "es6",
+    "module": "esnext",
+
+    "paths": {
+      "~utils": ["./src/utils"],
+      "~utils/*": ["./src/utils/*"]
+    }
+  }
+}
