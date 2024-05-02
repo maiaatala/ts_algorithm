@@ -1,4 +1,5 @@
 import { expect, describe, test } from 'bun:test';
+import { fizzBuzz } from '../src/tdd/fizzBuzz';
 
 describe('FizzBuzz test', () => {
   test('When given a number N, returns array from 1 to number N', () => {
