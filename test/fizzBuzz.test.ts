@@ -19,4 +19,13 @@ describe('FizzBuzz test', () => {
 
     expect(actual).toEqual(expectedResult);
   });
+
+  test("If the number in the array is divisible by 5, replace the number with 'Buzz'", () => {
+    const N = 5;
+    const expectedResult = [1, 2, 'Fizz', 4, 'Buzz'];
+
+    const actual = fizzBuzz(N);
+
+    expect(actual).toEqual(expectedResult);
+  });
 });
