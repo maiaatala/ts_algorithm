@@ -28,4 +28,29 @@ describe('FizzBuzz test', () => {
 
     expect(actual).toEqual(expectedResult);
   });
+
+  test("If the number in the array is divisible by both 3 and 5, replace the number with 'FizzBuzz'", () => {
+    const N = 15;
+    const expectedResult = [
+      1,
+      2,
+      'Fizz',
+      4,
+      'Buzz',
+      'Fizz',
+      7,
+      8,
+      'Fizz',
+      'Buzz',
+      11,
+      'Fizz',
+      13,
+      14,
+      'FizzBuzz',
+    ];
+
+    const actual = fizzBuzz(N);
+
+    expect(actual).toEqual(expectedResult);
+  });
 });
