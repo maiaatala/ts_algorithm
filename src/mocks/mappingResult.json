@@ -1,0 +1,101 @@
+[
+  {
+    "id": "b7a6915c-f3aa-41ec-bd34-08a5360bcad5",
+    "items": [
+      {
+        "type": "ITERATIVE",
+        "targetGroup": "guarantors",
+        "groups": [
+          {
+            "items": [
+              {
+                "type": "DIRECT",
+                "targetField": "email",
+                "value": "email1@example.com",
+                "id": "29f473a0-154f-4fb2-b794-6d0849ca69df"
+              },
+              {
+                "type": "DIRECT",
+                "targetField": "zipCode",
+                "value": "78200000",
+                "id": "cc3d3c8e-e1e4-40a0-b8ae-8b5d596ea84b"
+              },
+              {
+                "type": "DIRECT",
+                "targetField": "type",
+                "value": "type1",
+                "id": "26132245-60d6-4036-b0ea-4e8a307321f5"
+              },
+              {
+                "type": "DIRECT",
+                "targetField": "personType",
+                "value": "fisica",
+                "id": "55d69ff5-11a6-4259-9a11-aab3b3e84552"
+              }
+            ]
+          },
+          {
+            "items": [
+              {
+                "type": "DIRECT",
+                "targetField": "email",
+                "value": "email2@example.com",
+                "id": "29f473a0-154f-4fb2-b794-6d0849ca69df"
+              },
+              {
+                "type": "DIRECT",
+                "targetField": "zipCode",
+                "value": "78200001",
+                "id": "cc3d3c8e-e1e4-40a0-b8ae-8b5d596ea84b"
+              },
+              {
+                "type": "DIRECT",
+                "targetField": "type",
+                "value": "type2",
+                "id": "26132245-60d6-4036-b0ea-4e8a307321f5"
+              },
+              {
+                "type": "DIRECT",
+                "targetField": "personType",
+                "value": "juridica",
+                "id": "55d69ff5-11a6-4259-9a11-aab3b3e84552"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "DIRECT",
+        "id": "c052ddd2-cde5-4aad-8ca8-bf94052c15ff",
+        "targetField": "documentregisterrequest_userInputData_issuer.legalName",
+        "value": "nome fantasia"
+      },
+      {
+        "type": "ITERATIVE",
+        "targetGroup": "debtors",
+        "groups": [
+          {
+            "items": [
+              {
+                "type": "DIRECT",
+                "targetField": "legalName",
+                "value": "legalName1",
+                "id": "8ce1fcce-822d-4ada-8834-19051bdf7129"
+              }
+            ]
+          },
+          {
+            "items": [
+              {
+                "type": "DIRECT",
+                "targetField": "legalName",
+                "value": "legalName2",
+                "id": "8ce1fcce-822d-4ada-8834-19051bdf7129"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
