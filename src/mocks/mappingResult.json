@@ -65,12 +65,6 @@
         ]
       },
       {
-        "type": "DIRECT",
-        "id": "c052ddd2-cde5-4aad-8ca8-bf94052c15ff",
-        "targetField": "documentregisterrequest_userInputData_issuer.legalName",
-        "value": "nome fantasia"
-      },
-      {
         "type": "ITERATIVE",
         "targetGroup": "debtors",
         "groups": [

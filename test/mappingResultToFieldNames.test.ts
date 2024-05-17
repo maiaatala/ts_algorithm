@@ -1,5 +1,5 @@
 import { expect, describe, test } from 'bun:test';
-import { getMappingResultToObject } from '../src/utils/mappingResultToObject';
+import { getMappingResultToObject } from '../src/utils/mappingResultToFieldNames';
 import { AutofillMappingResult, MAPPING_TYPE } from '../src/types/autofill';
 
 import mockedMapping from '../src/mocks/mappingResult.json';
@@ -13,7 +13,8 @@ describe('get mapping result as object', () => {
           {
             type: MAPPING_TYPE.DIRECT,
             id: 'c052ddd2-cde5-4aad-8ca8-bf94052c15ff',
-            targetField: 'issuer.legalName',
+            targetField:
+              'documentregisterrequest_userInputData_issuer.legalName',
             value: 'nome fantasia',
           },
         ],
@@ -23,60 +24,7 @@ describe('get mapping result as object', () => {
     const actual = getMappingResultToObject(mapping);
 
     expect(actual).toEqual({
-      issuer: {
-        legalName: 'nome fantasia',
-      },
-    });
-  });
-
-  test('should work for direct mapping', () => {
-    const mapping = [
-      {
-        id: 'b7a6915c-f3aa-41ec-bd34-08a5360bcad5',
-        items: [
-          {
-            type: MAPPING_TYPE.DIRECT,
-            id: 'c052ddd2-cde5-4aad-8ca8-bf94052c15ff',
-            targetField: 'issuer.legalName',
-            value: 'nome fantasia',
-          },
-          {
-            type: MAPPING_TYPE.DIRECT,
-            id: 'c052ddd2-cde5-4aad-8ca8-bf94052c15ff',
-            targetField: 'issuer.text',
-            value: 'some text',
-          },
-          {
-            type: MAPPING_TYPE.DIRECT,
-            id: 'c052ddd2-cde5-4aad-8ca8-bf94052c15ff',
-            targetField: 'issuer.number',
-            value: 55,
-          },
-          {
-            type: MAPPING_TYPE.DIRECT,
-            id: 'c052ddd2-cde5-4aad-8ca8-bf94052c15ff',
-            targetField: 'issuer.address',
-            value: {
-              street: 'rua',
-              number: 5,
-            },
-          },
-        ],
-      },
-    ] as AutofillMappingResult[];
-
-    const actual = getMappingResultToObject(mapping);
-
-    expect(actual).toEqual({
-      issuer: {
-        legalName: 'nome fantasia',
-        text: 'some text',
-        number: 55,
-        address: {
-          street: 'rua',
-          number: 5,
-        },
-      },
+      'documentregisterrequest_userInputData_issuer.legalName': 'nome fantasia',
     });
   });
 
@@ -97,21 +45,6 @@ describe('get mapping result as object', () => {
                     value: 'legalName1',
                     id: '8ce1fcce-822d-4ada-8834-19051bdf7129',
                   },
-                  {
-                    type: MAPPING_TYPE.DIRECT,
-                    id: 'c052ddd2-cde5-4aad-8ca8-bf94052c15ff',
-                    targetField: 'issuer.number',
-                    value: 55,
-                  },
-                  {
-                    type: MAPPING_TYPE.DIRECT,
-                    id: 'c052ddd2-cde5-4aad-8ca8-bf94052c15ff',
-                    targetField: 'issuer.address',
-                    value: {
-                      street: 'rua',
-                      number: 5,
-                    },
-                  },
                 ],
               },
             ],
@@ -123,18 +56,7 @@ describe('get mapping result as object', () => {
     const actual = getMappingResultToObject(mapping);
 
     expect(actual).toEqual({
-      debtors: [
-        {
-          legalName: 'legalName1',
-          issuer: {
-            number: 55,
-            address: {
-              street: 'rua',
-              number: 5,
-            },
-          },
-        },
-      ],
+      'debtors[0].legalName': 'legalName1',
     });
   });
 
@@ -188,17 +110,9 @@ describe('get mapping result as object', () => {
     const actual = getMappingResultToObject(mapping);
 
     expect(actual).toEqual({
-      debtors: [
-        {
-          legalName: 'legalName1',
-          information: [
-            {
-              experience: 'Primeira empresa',
-              tempo: 3,
-            },
-          ],
-        },
-      ],
+      'debtors[0].legalName': 'legalName1',
+      'debtors[0].information[0].experience': 'Primeira empresa',
+      'debtors[0].information[0].tempo': 3,
     });
   });
 
@@ -300,30 +214,14 @@ describe('get mapping result as object', () => {
     const actual = getMappingResultToObject(mapping);
 
     expect(actual).toEqual({
-      debtors: [
-        {
-          legalName: 'legalName1',
-          information: [
-            {
-              experience: 'Primeira empresa',
-              tempo: 3,
-            },
-            {
-              experience: 'Segunda empresa',
-              tempo: 5,
-            },
-          ],
-        },
-        {
-          legalName: 'Batata assada',
-          information: [
-            {
-              experience: 'McDonalds',
-              tempo: 1,
-            },
-          ],
-        },
-      ],
+      'debtors[0].legalName': 'legalName1',
+      'debtors[0].information[0].experience': 'Primeira empresa',
+      'debtors[0].information[0].tempo': 3,
+      'debtors[0].information[1].experience': 'Segunda empresa',
+      'debtors[0].information[1].tempo': 5,
+      'debtors[1].legalName': 'Batata assada',
+      'debtors[1].information[0].experience': 'McDonalds',
+      'debtors[1].information[0].tempo': 1,
     });
   });
 
@@ -333,29 +231,16 @@ describe('get mapping result as object', () => {
     );
 
     expect(actual).toEqual({
-      guarantors: [
-        {
-          email: 'email1@example.com',
-          zipCode: '78200000',
-          type: 'type1',
-          personType: 'fisica',
-        },
-        {
-          email: 'email2@example.com',
-          zipCode: '78200001',
-          type: 'type2',
-          personType: 'juridica',
-        },
-      ],
-      debtors: [
-        {
-          legalName: 'legalName1',
-        },
-
-        {
-          legalName: 'legalName2',
-        },
-      ],
+      'guarantors[0].email': 'email1@example.com',
+      'guarantors[0].zipCode': '78200000',
+      'guarantors[0].type': 'type1',
+      'guarantors[0].personType': 'fisica',
+      'guarantors[1].email': 'email2@example.com',
+      'guarantors[1].zipCode': '78200001',
+      'guarantors[1].type': 'type2',
+      'guarantors[1].personType': 'juridica',
+      'debtors[0].legalName': 'legalName1',
+      'debtors[1].legalName': 'legalName2',
     });
   });
 });
