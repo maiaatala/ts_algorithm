@@ -358,4 +358,43 @@ describe('get mapping result as object', () => {
       ],
     });
   });
+
+  test('should work for empty mappings', () => {
+    const mapping = [
+      {
+        id: 'b7a6915c-f3aa-41ec-bd34-08a5360bcad5',
+        items: [
+          {
+            type: 'ITERATIVE',
+            targetGroup: 'guarantors',
+            groups: [],
+          },
+          {
+            type: 'ITERATIVE',
+            targetGroup: 'debtors',
+            groups: [],
+          },
+          {
+            type: 'DIRECT',
+            id: '7bb7eb4a-075c-40e5-bf24-6eb22b84ab91',
+            targetField: 'issuer.legalName',
+          },
+          {
+            type: 'DIRECT',
+            id: '1735a5d0-53b5-4eda-80e0-85c62bda1e3a',
+            targetField: 'issuer.personType',
+          },
+          {
+            type: 'DIRECT',
+            id: 'a53f0ebe-11c4-4299-bbd8-e16dbc9d5f36',
+            targetField: 'issuer.legalStatus',
+          },
+        ],
+      },
+    ];
+
+    const actual = getMappingResultToObject(mapping as AutofillMappingResult[]);
+
+    expect(actual).toEqual({});
+  });
 });
